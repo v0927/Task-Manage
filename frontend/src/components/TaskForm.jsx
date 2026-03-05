@@ -54,7 +54,7 @@ const TaskForm = ({ task, onSave, onClose }) => {
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
         <div className="modal-header">
-          <h2>{task ? 'Editar Tarea' : 'Nueva Tarea'}</h2>
+          <h2>{task ? 'Editar Tarea' : 'Crea tu primera tarea'}</h2>
           <button className="close-btn" onClick={onClose}>✕</button>
         </div>
 

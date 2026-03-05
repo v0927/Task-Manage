@@ -1,8 +1,8 @@
 .navbar {
-  background: linear-gradient(135deg, #c5b3f0 0%, #a8d8ea 100%);
-  color: #333;
+  background: var(--gradient-primary);
+  color: var(--white);
   padding: 1rem 0;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  box-shadow: var(--shadow-lg);
   position: sticky;
   top: 0;
   z-index: 100;
@@ -22,32 +22,69 @@
   margin: 0;
   font-size: 1.8rem;
   font-weight: 700;
+  color: var(--white);
+  letter-spacing: 0.5px;
+  min-width: 200px;
+}
+
+.navbar-menu {
+  display: flex;
+  gap: 2rem;
+  flex: 1;
+  justify-content: center;
+}
+
+.nav-link {
+  background: none;
+  border: none;
+  color: var(--white);
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: var(--transition);
+  position: relative;
+}
+
+.nav-link:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.nav-link.active {
+  background: rgba(255, 255, 255, 0.2);
+  color: var(--indigo-50);
 }
 
 .navbar-content {
   display: flex;
   align-items: center;
   gap: 2rem;
+  margin-left: auto;
 }
 
-.user-email {
+.user-name {
   font-size: 0.95rem;
-  opacity: 0.9;
+  opacity: 0.95;
+  color: var(--white);
+  font-weight: 500;
 }
 
 .btn-logout {
-  background-color: rgba(255, 255, 255, 0.3);
-  color: #333;
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.15);
+  color: var(--white);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   padding: 0.5rem 1rem;
   border-radius: 4px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: var(--transition);
+  font-weight: 500;
 }
 
 .btn-logout:hover {
-  background-color: rgba(255, 255, 255, 0.5);
-  border-color: rgba(255, 255, 255, 0.7);
+  background-color: var(--red-600);
+  border-color: var(--red-600);
+  transform: translateY(-1px);
 }
 
 @media (max-width: 768px) {

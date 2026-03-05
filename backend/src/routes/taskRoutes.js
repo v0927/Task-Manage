@@ -1,5 +1,5 @@
 const express = require('express');
-const { getTasks, createTask, updateTask, deleteTask, toggleCompleteTask } = require('../controllers/taskController');
+const { getTasks, createTask, updateTask, deleteTask, toggleCompleteTask, getProductivityStats, getProductivityStreak, exportTasksToIcs } = require('../controllers/taskController');
 const authMiddleware = require('../middlewares/authMiddleware');
 
 const router = express.Router();
@@ -7,7 +7,18 @@ const router = express.Router();
 // Todas las rutas de tareas requieren autenticación
 router.use(authMiddleware);
 
-// Obtener todas las tareas del usuario
+// Rutas específicas PRIMERO (más específicas que genéricas)
+// Obtener estadísticas de productividad
+router.get('/stats', getProductivityStats);
+
+// Obtener información de streak
+router.get('/streak', getProductivityStreak);
+
+// Exportar tareas como archivo iCalendar
+router.get('/export/ics', exportTasksToIcs);
+
+// Rutas genéricas DESPUÉS
+// Obtener todas las tareas del usuario (con filtros opcionales)
 router.get('/', getTasks);
 
 // Crear nueva tarea

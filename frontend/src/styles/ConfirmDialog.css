@@ -4,34 +4,37 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(125, 79, 80, 0.5);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 9998;
   animation: fadeIn 0.2s ease-out;
+  backdrop-filter: blur(2px);
 }
 
 .confirm-dialog {
-  background: white;
+  background: var(--white);
   border-radius: 12px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  box-shadow: var(--shadow-xl);
   max-width: 400px;
   width: 90%;
   overflow: hidden;
   animation: slideUp 0.3s ease-out;
+  border: 1px solid var(--gray-200);
 }
 
 .confirm-header {
   padding: 24px 24px 16px;
-  border-bottom: 1px solid #e5e7eb;
+  border-bottom: 1px solid var(--gray-200);
+  background: var(--color-beige);
 }
 
 .confirm-header h3 {
   margin: 0;
   font-size: 18px;
   font-weight: 600;
-  color: #1f2937;
+  color: var(--gray-900);
 }
 
 .confirm-body {
@@ -40,7 +43,7 @@
 
 .confirm-body p {
   margin: 0;
-  color: #6b7280;
+  color: var(--gray-500);
   font-size: 14px;
   line-height: 1.5;
 }
@@ -50,7 +53,7 @@
   gap: 12px;
   padding: 16px 24px;
   justify-content: flex-end;
-  border-top: 1px solid #e5e7eb;
+  border-top: 1px solid var(--color-beige);
 }
 
 .confirm-footer .btn {
@@ -60,25 +63,27 @@
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all var(--transition);
 }
 
 .btn-secondary {
-  background-color: #d4cfe6;
-  color: #333;
+  background-color: var(--color-light-gray);
+  color: var(--gray-900);
+  border: 1px solid var(--gray-200);
 }
 
 .btn-secondary:hover {
-  background-color: #c8c1d9;
+  background-color: var(--gray-200);
 }
 
 .btn-danger {
-  background-color: #f5a9a9;
-  color: #333;
+  background-color: var(--red-600);
+  color: var(--white);
+  font-weight: 600;
 }
 
 .btn-danger:hover {
-  background-color: #f08080;
+  background-color: var(--red-700);
 }
 
 @keyframes fadeIn {
