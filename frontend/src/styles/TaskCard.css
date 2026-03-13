@@ -7,10 +7,19 @@
   border-left: 4px solid var(--indigo-500);
 }
 
+html.dark-mode .task-card {
+  background: var(--gray-900);
+  border-left-color: var(--indigo-400);
+}
+
 .task-card:hover {
   box-shadow: var(--shadow-lg);
   transform: translateY(-2px);
   border-left-color: var(--indigo-600);
+}
+
+html.dark-mode .task-card:hover {
+  border-left-color: var(--indigo-400);
 }
 
 .task-card.overdue {
@@ -18,10 +27,20 @@
   background-color: var(--red-50);
 }
 
+html.dark-mode .task-card.overdue {
+  background-color: var(--red-900);
+  border-left-color: var(--red-500);
+}
+
 .task-card.completed {
   border-left-color: var(--green-600);
   background-color: var(--green-50);
   opacity: 0.85;
+}
+
+html.dark-mode .task-card.completed {
+  background-color: var(--green-900);
+  border-left-color: var(--green-500);
 }
 
 .task-header {
@@ -52,9 +71,17 @@
   flex: 1;
 }
 
+html.dark-mode .task-header h3 {
+  color: var(--text-dark-primary);
+}
+
 .task-header h3.line-through {
   text-decoration: line-through;
   color: var(--gray-400);
+}
+
+html.dark-mode .task-header h3.line-through {
+  color: var(--gray-600);
 }
 
 .category-badge {
@@ -74,9 +101,17 @@
   margin: 0.8rem 0;
 }
 
+html.dark-mode .task-description {
+  color: var(--text-dark-secondary);
+}
+
 .task-description.line-through {
   text-decoration: line-through;
-  color: var(--color-light-gray);
+  color: var(--gray-300);
+}
+
+html.dark-mode .task-description.line-through {
+  color: var(--gray-600);
 }
 
 .task-meta {
@@ -84,8 +119,12 @@
   gap: 1rem;
   margin: 1rem 0;
   font-size: 0.9rem;
-  color: var(--color-info);
+  color: var(--gray-600);
   flex-wrap: wrap;
+}
+
+html.dark-mode .task-meta {
+  color: var(--text-dark-tertiary);
 }
 
 .due-date {
@@ -95,18 +134,18 @@
 }
 
 .overdue-label {
-  color: var(--color-cream);
+  color: var(--white);
   font-weight: 600;
-  background-color: var(--color-error);
+  background-color: var(--red-600);
   padding: 0.2rem 0.6rem;
   border-radius: 4px;
   font-size: 0.8rem;
 }
 
 .completed-label {
-  color: #f9eae1ff;
+  color: var(--white);
   font-weight: 600;
-  background-color: #cc8b86ff;
+  background-color: var(--green-600);
   padding: 0.2rem 0.6rem;
   border-radius: 4px;
   font-size: 0.8rem;
@@ -139,9 +178,13 @@
 }
 
 .btn-edit:disabled {
-  background-color: #d4d4d4;
+  background-color: var(--gray-300);
   cursor: not-allowed;
   opacity: 0.6;
+}
+
+html.dark-mode .btn-edit:disabled {
+  background-color: var(--gray-600);
 }
 
 .btn-delete {
@@ -150,7 +193,7 @@
 }
 
 .btn-delete:hover {
-  background-color: #7d4f50ff;
+  background-color: var(--red-700);
 }
 
 @media (max-width: 768px) {

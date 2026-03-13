@@ -96,3 +96,25 @@
     width: 100%;
   }
 }
+
+/* Dark Mode */
+html.dark-mode .filter-group label {
+  color: var(--text-dark-secondary);
+}
+
+html.dark-mode .filter-select {
+  background-color: var(--gray-800);
+  color: var(--text-dark-primary);
+  border-color: var(--gray-700);
+}
+
+html.dark-mode .filter-select:hover,
+html.dark-mode .filter-select:focus {
+  border-color: var(--indigo-400);
+  box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.15);
+}
+
+html.dark-mode .filter-select option {
+  background-color: var(--gray-800);
+  color: var(--text-dark-primary);
+}

@@ -80,6 +80,14 @@
   --color-border: var(--gray-200);
   --color-bg-light: var(--gray-50);
   --color-bg: var(--white);
+  --color-dark: var(--gray-900);
+  --color-light-gray: var(--gray-200);
+  --color-beige: var(--gray-100);
+  --color-tan: var(--gray-300);
+  --color-medium-gray: var(--gray-400);
+  --color-cream: var(--white);
+  --color-info: var(--indigo-600);
+  --border-color-dark: var(--gray-300);
 
   /* Gradientes */
   --gradient-primary: linear-gradient(135deg, var(--indigo-600), var(--purple-600));
@@ -94,4 +102,84 @@
 
   /* Transiciones */
   --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Kanban & Additional Colors */
+  --text-primary: var(--gray-900);
+  --text-secondary: var(--gray-500);
+  --bg-secondary: var(--gray-100);
+  --bg-card: var(--white);
+  --primary: var(--indigo-600);
+  --primary-light: var(--indigo-100);
+  --border-color: var(--gray-200);
+  --error: var(--red-600);
+  --error-bg: var(--red-50);
+}
+
+/* DARK MODE - Tema Oscuro */
+:root.dark-mode {
+  /* Fondos */
+  --black-primary: #1a1a1a;
+  --black-secondary: #2d2d2d;
+  --black-tertiary: #3a3a3a;
+  --black-card: #252525;
+
+  /* Textos en Modo Oscuro */
+  --text-dark-primary: #f3f4f6;
+  --text-dark-secondary: #d1d5db;
+  --text-dark-tertiary: #9ca3af;
+
+  /* Bordes en Modo Oscuro */
+  --border-dark: #4b5563;
+  --border-dark-light: #374151;
+
+  /* Override de colores para Dark Mode */
+  --color-primary: var(--indigo-400);
+  --color-primary-light: var(--indigo-300);
+  --color-primary-dark: var(--indigo-500);
+  --color-text-primary: var(--gray-100);
+  --color-text-secondary: var(--gray-400);
+  --color-border: var(--gray-600);
+  --color-bg-light: var(--gray-800);
+  --color-bg: var(--gray-900);
+  --color-dark: var(--gray-100);
+  --color-light-gray: var(--gray-700);
+  --color-beige: var(--gray-800);
+  --color-tan: var(--gray-700);
+  --color-medium-gray: var(--gray-500);
+  --color-cream: var(--gray-900);
+  --color-info: var(--indigo-400);
+  --border-color-dark: var(--gray-700);
+
+  /* Kanban overrides for Dark Mode */
+  --text-primary: var(--gray-100);
+  --text-secondary: var(--gray-400);
+  --bg-secondary: var(--gray-800);
+  --bg-card: var(--gray-900);
+  --primary: var(--indigo-400);
+  --primary-light: var(--indigo-900);
+  --border-color: var(--gray-700);
+  --error: var(--red-500);
+  --error-bg: rgba(239, 68, 68, 0.1);
+
+  /* Sombras en Modo Oscuro */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
+  --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.4), 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.37), 0 2px 4px -1px rgba(0, 0, 0, 0.25);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.37), 0 4px 6px -2px rgba(0, 0, 0, 0.25);
+
+  /* Gradient backgrounds en modo oscuro */
+  --gradient-primary: linear-gradient(135deg, var(--indigo-500), var(--purple-500));
+  --gradient-background: linear-gradient(135deg, var(--gray-900), var(--gray-800), var(--gray-900));
+}
+
+/* Aplicar dark mode a todo el documento */
+html.dark-mode {
+  background-color: var(--black-primary);
+  color: var(--text-dark-primary);
+  color-scheme: dark;
+}
+
+html.dark-mode body {
+  background-color: var(--black-primary);
+  color: var(--text-dark-primary);
 }

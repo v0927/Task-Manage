@@ -1,5 +1,4 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import api from '../utils/api';
 import { useToast } from '../context/ToastContext';
@@ -7,8 +6,7 @@ import { AuthContext } from '../context/AuthContext';
 import '../styles/Profile.css';
 
 const Profile = () => {
-  const navigate = useNavigate();
-  const { user, setUser, logout } = useContext(AuthContext);
+  const { user, setUser} = useContext(AuthContext);
   const { success, error } = useToast();
 
   const [personalData, setPersonalData] = useState({

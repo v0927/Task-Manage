@@ -1,5 +1,5 @@
 const express = require('express');
-const { getTasks, createTask, updateTask, deleteTask, toggleCompleteTask, getProductivityStats, getProductivityStreak, exportTasksToIcs } = require('../controllers/taskController');
+const { getTasks, createTask, updateTask, deleteTask, toggleCompleteTask, getProductivityStats, getProductivityStreak, exportTasksToIcs, updateTaskStatus } = require('../controllers/taskController');
 const authMiddleware = require('../middlewares/authMiddleware');
 
 const router = express.Router();
@@ -26,6 +26,9 @@ router.post('/', createTask);
 
 // Actualizar una tarea
 router.put('/:id', updateTask);
+
+// Actualizar estado de tarea (Kanban)
+router.patch('/:id/status', updateTaskStatus);
 
 // Marcar tarea como completada/no completada
 router.patch('/:id/toggle', toggleCompleteTask);

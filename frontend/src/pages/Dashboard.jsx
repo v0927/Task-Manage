@@ -15,6 +15,7 @@ import '../styles/Dashboard.css';
 const Dashboard = () => {
   const [tasks, setTasks] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [errorLoading, setErrorLoading] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [showOnboarding, setShowOnboarding] = useState(false);
   const [editingTask, setEditingTask] = useState(null);
@@ -50,6 +51,7 @@ const Dashboard = () => {
 
   const fetchTasks = async () => {
     try {
+      setErrorLoading(null);
       // Construir query parameters
       const params = new URLSearchParams();
       if (searchValue) params.append('search', searchValue);
@@ -80,20 +82,38 @@ const Dashboard = () => {
       setLoading(false);
     } catch (err) {
       console.error('Error al cargar tareas:', err);
-      error('Error al cargar las tareas');
+      console.error('Error detalles:', {
+        status: err.response?.status,
+        statusText: err.response?.statusText,
+        data: err.response?.data,
+        message: err.message
+      });
+      const errorMsg = err.response?.data?.message || 'Error al cargar las tareas';
+      setErrorLoading(errorMsg);
+      error(errorMsg);
       setLoading(false);
     }
   };
 
   const handleCreateTask = async (taskData) => {
     try {
-      await api.post('/tasks', taskData);
+      console.log('🚀 Creando tarea con datos:', taskData);
+      const response = await api.post('/tasks', taskData);
+      console.log('✅ Respuesta del servidor:', response.data);
       success('Tarea creada exitosamente');
       setShowModal(false);
       setShowOnboarding(false);
       fetchTasks();
     } catch (err) {
-      error(err.response?.data?.message || 'Error al crear tarea');
+      console.error('❌ Error al crear tarea:', err);
+      console.error('Error details:', {
+        message: err.message,
+        status: err.response?.status,
+        statusText: err.response?.statusText,
+        data: err.response?.data,
+      });
+      const errorMsg = err.response?.data?.message || err.message || 'Error al crear tarea';
+      error(errorMsg);
     }
   };
 
@@ -187,6 +207,30 @@ const Dashboard = () => {
       <>
         <Navbar />
         <div className="loading">Cargando tareas...</div>
+      </>
+    );
+  }
+
+  if (errorLoading) {
+    return (
+      <>
+        <Navbar />
+        <div className="container">
+          <div className="error-state">
+            <h2>⚠️ Error al cargar las tareas</h2>
+            <p>{errorLoading}</p>
+            <button 
+              className="btn btn-primary"
+              onClick={() => {
+                setLoading(true);
+                setErrorLoading(null);
+                fetchTasks();
+              }}
+            >
+              🔄 Reintentar
+            </button>
+          </div>
+        </div>
       </>
     );
   }

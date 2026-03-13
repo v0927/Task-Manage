@@ -99,6 +99,42 @@
   border-top: 1px solid var(--gray-200);
 }
 
+/* Dark Mode */
+html.dark-mode .productivity-card {
+  background: var(--gradient-background);
+  border-color: var(--gray-700);
+}
+
+html.dark-mode .productivity-title {
+  color: var(--text-dark-primary);
+}
+
+html.dark-mode .productivity-stat {
+  background: var(--gray-900);
+  border-left-color: var(--indigo-400);
+}
+
+html.dark-mode .stat-label {
+  color: var(--text-dark-secondary);
+}
+
+html.dark-mode .stat-value {
+  color: var(--indigo-400);
+}
+
+html.dark-mode .stat-name,
+html.dark-mode .stat-subtext {
+  color: var(--text-dark-secondary);
+}
+
+html.dark-mode .progress-bar {
+  background-color: var(--gray-700);
+}
+
+html.dark-mode .productivity-footer {
+  border-top-color: var(--gray-700);
+}
+
 .last-activity {
   margin: 0;
   font-size: 0.85rem;

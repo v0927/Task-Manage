@@ -41,13 +41,9 @@ const TaskForm = ({ task, onSave, onClose }) => {
       return;
     }
 
+    console.log('📝 Enviando tarea:', formData);
     onSave(formData);
-    setFormData({
-      title: '',
-      description: '',
-      category: 'Trabajo',
-      due_date: ''
-    });
+    // No limpiar el formulario aquí - el padre lo cerrará si es exitoso
   };
 
   return (

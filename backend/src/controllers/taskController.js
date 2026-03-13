@@ -52,8 +52,13 @@ const createTask = async (req, res) => {
   try {
     const { title, description, category, due_date } = req.body;
 
+    console.log('📝 Recibido request POST /tasks');
+    console.log('   Usuario ID:', req.userId);
+    console.log('   Datos:', { title, description, category, due_date });
+
     // Validaciones
     if (!title || !category || !due_date) {
+      console.warn('⚠️ Validación fallida - Faltan campos requeridos');
       return res.status(400).json({ 
         message: 'Título, categoría y fecha de vencimiento son requeridos' 
       });
@@ -61,14 +66,17 @@ const createTask = async (req, res) => {
 
     const validCategories = ['Estudio', 'Trabajo', 'Personal'];
     if (!validCategories.includes(category)) {
+      console.warn('⚠️ Categoría inválida:', category);
       return res.status(400).json({ message: 'Categoría inválida' });
     }
 
     // Crear tarea
     const newTask = await pool.query(
-      'INSERT INTO tasks (user_id, title, description, category, due_date) VALUES ($1, $2, $3, $4, $5) RETURNING *',
-      [req.userId, title, description || null, category, due_date]
+      'INSERT INTO tasks (user_id, title, description, category, due_date, status) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *',
+      [req.userId, title, description || null, category, due_date, 'pending']
     );
+
+    console.log('✅ Tarea creada exitosamente:', newTask.rows[0].id);
 
     // Marcar first_login como false si era la primera tarea
     await pool.query(
@@ -81,8 +89,9 @@ const createTask = async (req, res) => {
       task: newTask.rows[0]
     });
   } catch (error) {
-    console.error('Error al crear tarea:', error);
-    res.status(500).json({ message: 'Error al crear tarea' });
+    console.error('❌ Error al crear tarea:', error.message);
+    console.error('Stack:', error.stack);
+    res.status(500).json({ message: 'Error al crear tarea: ' + error.message });
   }
 };
 
@@ -389,6 +398,46 @@ END:VEVENT
   }
 };
 
+// Actualizar estado de tarea (para Kanban Board)
+const updateTaskStatus = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { status } = req.body;
+
+    // Validar status
+    const validStatuses = ['pending', 'in_progress', 'completed'];
+    if (!validStatuses.includes(status)) {
+      return res.status(400).json({ message: 'Estado inválido' });
+    }
+
+    // Verificar que la tarea pertenece al usuario
+    const task = await pool.query(
+      'SELECT * FROM tasks WHERE id = $1 AND user_id = $2',
+      [id, req.userId]
+    );
+
+    if (task.rows.length === 0) {
+      return res.status(404).json({ message: 'Tarea no encontrada' });
+    }
+
+    // Actualizar tarea
+    const completed = status === 'completed' ? true : false;
+
+    const updatedTask = await pool.query(
+      'UPDATE tasks SET status = $1, completed = $2 WHERE id = $3 RETURNING *',
+      [status, completed, id]
+    );
+
+    res.json({
+      message: 'Estado actualizado exitosamente',
+      task: updatedTask.rows[0]
+    });
+  } catch (error) {
+    console.error('Error al actualizar estado de tarea:', error);
+    res.status(500).json({ message: 'Error al actualizar tarea' });
+  }
+};
+
 module.exports = {
   getTasks,
   createTask,
@@ -397,5 +446,6 @@ module.exports = {
   toggleCompleteTask,
   getProductivityStats,
   getProductivityStreak,
-  exportTasksToIcs
+  exportTasksToIcs,
+  updateTaskStatus
 };

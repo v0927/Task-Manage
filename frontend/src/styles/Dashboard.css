@@ -155,3 +155,82 @@
   color: var(--color-dark);
   font-size: 1.1rem;
 }
+
+/* Error State */
+.error-state {
+  text-align: center;
+  padding: 3rem 2rem;
+  background-color: var(--red-50);
+  border: 2px solid var(--red-300);
+  border-radius: 12px;
+  margin-top: 2rem;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.error-state h2 {
+  color: var(--red-600);
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.error-state p {
+  color: var(--red-700);
+  margin-bottom: 2rem;
+  font-size: 1rem;
+}
+
+html.dark-mode .error-state {
+  background-color: var(--red-900);
+  border-color: var(--red-700);
+}
+
+html.dark-mode .error-state h2 {
+  color: var(--red-300);
+}
+
+html.dark-mode .error-state p {
+  color: var(--red-200);
+}
+
+/* Dark Mode Styles */
+html.dark-mode .onboarding-message {
+  background: rgba(79, 70, 229, 0.1);
+  border-left-color: var(--indigo-400);
+  color: var(--text-dark-primary);
+}
+
+html.dark-mode .stat-card {
+  background: var(--gray-900);
+  border-color: var(--gray-700);
+}
+
+html.dark-mode .stat-card:hover {
+  border-color: var(--indigo-400);
+}
+
+html.dark-mode .stat-value {
+  color: var(--indigo-400);
+}
+
+html.dark-mode .stat-label {
+  color: var(--text-dark-secondary);
+}
+
+html.dark-mode .dashboard-header h2 {
+  color: var(--text-dark-primary);
+}
+
+html.dark-mode .empty-state {
+  background: rgba(79, 70, 229, 0.1);
+  border-color: var(--indigo-900);
+}
+
+html.dark-mode .empty-state h3 {
+  color: var(--text-dark-primary);
+}
+
+html.dark-mode .empty-state p {
+  color: var(--text-dark-secondary);
+}

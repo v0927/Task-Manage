@@ -1,12 +1,14 @@
 import React, { useContext } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
+import { useDarkMode } from '../context/DarkModeContext';
 import '../styles/Navbar.css';
 
 const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { user, logout } = useContext(AuthContext);
+  const { isDarkMode, toggleDarkMode } = useDarkMode();
 
   const handleLogout = () => {
     logout();
@@ -30,6 +32,12 @@ const Navbar = () => {
             Dashboard
           </button>
           <button 
+            className={`nav-link ${isActive('/kanban') ? 'active' : ''}`}
+            onClick={() => navigate('/kanban')}
+          >
+            Kanban
+          </button>
+          <button 
             className={`nav-link ${isActive('/profile') ? 'active' : ''}`}
             onClick={() => navigate('/profile')}
           >
@@ -38,6 +46,13 @@ const Navbar = () => {
         </div>
 
         <div className="navbar-content">
+          <button 
+            className="btn-dark-mode"
+            onClick={toggleDarkMode}
+            title={isDarkMode ? 'Activar modo claro' : 'Activar modo oscuro'}
+          >
+            {isDarkMode ? '☀️' : '🌙'}
+          </button>
           <span className="user-name">{user?.name || 'Usuario'}</span>
           <button className="btn btn-logout" onClick={handleLogout}>
             Salir

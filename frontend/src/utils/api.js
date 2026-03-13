@@ -20,4 +20,19 @@ api.interceptors.request.use(
   }
 );
 
+// Interceptor de respuesta para manejar errores 401
+api.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response?.status === 401) {
+      // Token inválido o expirado, limpiar localStorage
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+      // Redirigir a login
+      window.location.href = '/login';
+    }
+    return Promise.reject(error);
+  }
+);
+
 export default api;

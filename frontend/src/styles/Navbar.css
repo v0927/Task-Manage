@@ -87,6 +87,25 @@
   transform: translateY(-1px);
 }
 
+.btn-dark-mode {
+  background: none;
+  border: none;
+  color: var(--white);
+  font-size: 1.3rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 4px;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-dark-mode:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  transform: rotate(20deg);
+}
+
 @media (max-width: 768px) {
   .navbar-container {
     flex-direction: column;

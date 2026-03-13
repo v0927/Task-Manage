@@ -48,11 +48,40 @@
   font-size: 1.2rem;
   cursor: pointer;
   color: var(--gray-400);
-  padding: 0.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   transition: var(--transition);
+}
+
+.search-clear-btn:hover {
+  color: var(--gray-600);
+}
+
+/* Dark Mode */
+html.dark-mode .search-input {
+  background-color: var(--gray-800);
+  border-color: var(--gray-700);
+  color: var(--text-dark-primary);
+}
+
+html.dark-mode .search-input::placeholder {
+  color: var(--text-dark-secondary);
+}
+
+html.dark-mode .search-input:focus {
+  background-color: var(--gray-800);
+  border-color: var(--indigo-400);
+  box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.15);
+}
+
+html.dark-mode .search-icon {
+  color: var(--text-dark-secondary);
+}
+
+html.dark-mode .search-clear-btn {
+  color: var(--text-dark-secondary);
+}
+
+html.dark-mode .search-clear-btn:hover {
+  color: var(--text-dark-primary);
 }
 
 .search-clear-btn:hover {
