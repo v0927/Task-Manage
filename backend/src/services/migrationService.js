@@ -4,28 +4,15 @@ const pool = require('../config/database');
 
 async function runMigrations() {
   try {
-    // Buscar migrations en diferentes posibles rutas
-    let migrationsDir;
-    const possiblePaths = [
-      path.join(__dirname, '../../migrations'),
-      path.join(__dirname, '../../../migrations'),
-      path.join(process.cwd(), 'backend/migrations'),
-      path.join(process.cwd(), 'migrations'),
-    ];
+    // Calcular ruta de migraciones desde el archivo actual
+    // Este archivo está en: /backend/src/services/migrationService.js
+    // Las migraciones están en: /backend/migrations
+    const migrationsDir = path.resolve(__dirname, '../../migrations');
     
-    for (const dir of possiblePaths) {
-      try {
-        fs.accessSync(dir);
-        migrationsDir = dir;
-        console.log(`✓ Migraciones encontradas en: ${migrationsDir}`);
-        break;
-      } catch (e) {
-        // Continuar con la siguiente ruta
-      }
-    }
+    console.log(`🔍 Buscando migraciones en: ${migrationsDir}`);
     
-    if (!migrationsDir) {
-      console.log('⚠️  Carpeta de migraciones no encontrada en ninguna ruta');
+    if (!fs.existsSync(migrationsDir)) {
+      console.log(`⚠️  Carpeta de migraciones no encontrada en: ${migrationsDir}`);
       return;
     }
 
