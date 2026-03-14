@@ -4,7 +4,7 @@ const pool = require('../config/database');
 
 async function runMigrations() {
   try {
-    const migrationsDir = path.join(__dirname, '../migrations');
+    const migrationsDir = path.join(__dirname, '../../migrations');
     const files = fs.readdirSync(migrationsDir)
       .filter(f => f.endsWith('.sql'))
       .sort();
